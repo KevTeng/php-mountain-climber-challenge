@@ -22,7 +22,13 @@ class Bobby
      */
     public function giveMoney($price)
     {
-        /** @TODO */
+        $max = 0;
+
+        for($i = 0; $i < count($this->wallet); $i++){
+            if(is_numeric($this->wallet[$i])){
+                $max = max($max)
+            }
+        }
 
         return false;
     }
