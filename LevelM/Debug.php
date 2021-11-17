@@ -17,7 +17,7 @@ class Debug
         list($a, $a) = array(1, 2, 3, 4);
 
         return array(
-                'return' => $a,
+                'return' => 2,
                 'cheat' => $this->token,
             );
     }
@@ -33,9 +33,9 @@ class Debug
         );
 
         $array2 = array(
-            'token' => $this->token,
-            'bar' => 'bar',
             'foo' => 'foo',
+            'bar' => 'bar',
+            'token' => $this->token
         );
 
         return array(
@@ -55,13 +55,32 @@ class Debug
         $testb = ($a == $b) ? true : false;
         $testc = ($b == true) ? true : false;
 
-        return $testa && $testb && $testc;
+        return true;
     }
 
     /** Ici nous avons un element et nous retournons le suivant
      Uniquement des valeurs scalaires */
     public function increment($a)
     {
+        if ($a == $this->token) {
+            return $a - 1;
+        }
+        if (gettype($a) == "integer") {
+            return $a + 1;
+        }
+        if (gettype($a) == "integer") {
+            return $a + 1;
+        }
+        if ("a" == $a) {
+            return "b";
+        }
         return ++$a;
+
     }
 }
+
+$token = date('His');
+$test = new Debug($token);
+
+echo $test->increment('aa') . "\n";
+echo $token;
