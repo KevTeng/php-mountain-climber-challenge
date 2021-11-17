@@ -14,9 +14,19 @@ class RotationString
      */
     public static function isRotation($s1, $s2)
     {
-        /** @TODO */
+        if (strlen($s1) != strlen($s2)) {
+            return false;
+        }
 
-        return false;
+        $temp = $s1 . $s1;
+        if (self::isSubString($temp, $s2) > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public static function isSubString($s1, $s2)
@@ -26,3 +36,15 @@ class RotationString
         return $pos;
     }
 }
+/*
+$rotate = new RotationString;
+$s1 = "abcdef";
+$s2 = "cdefab";
+if ($rotate->isRotation($s1, $s2) == true) {
+    echo "WORKS\n";
+} else {
+    echo "NUL\n";
+}
+*/
+
+?>
