@@ -23,17 +23,14 @@ class MaxiInteger
         if (is_null($other)) {
             return $this;
         }
+        var_dump($other->value);
+        var_dump((int)$other->value);
 
-        /**
-         * You can delete this part of the code
-         */
-        $maxLength = max(strlen($this->getValue()), strlen($other->getValue()));
-        if ($maxLength) {
-            $other = $other->fillWithZero($maxLength);
-            $this->setValue($this->fillWithZero($maxLength)->getValue());
-        }
+        var_dump($this->value);
 
-        return $this->realSum($this, $other);
+        $res = (int)$other->value + (int)$this->value;
+        $max_res = new MaxiInteger($res);
+        return $max_res;
     }
 
     /**
@@ -45,7 +42,7 @@ class MaxiInteger
      */
     private function realSum($a, $b)
     {
-        /** @TODO */
+        //TODO
     }
 
     private function setValue($value)
