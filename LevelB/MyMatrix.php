@@ -30,6 +30,7 @@ class MyMatrix
     public function str2Matrix($str)
     {
         $lines = explode("\n", $str);
+        
         if ($this->iMax !== count($lines)) {
             throw new \Exception();
         }
@@ -83,8 +84,32 @@ class MyMatrix
      */
     public function fillZero()
     {
-        /** @TODO */
+        $tmp_matrix = clone $this;
+        for ($i = 0; $i < $this->iMax; ++$i) {
+            for ($j = 0; $j < $this->jMax; ++$j) {
+                if ($this->matrix[$i][$j] == 0) {
+                    $tmp_matrix->fillZeroSub($i, $j);
+                }
+            }
+        }
+        return $tmp_matrix;
+    }
 
-        return $this;
+    private function fillZeroSub($iPos, $jPos)
+    {
+        for ($i = 0; $i < $this->iMax; ++$i) {
+            $this->matrix[$i][$jPos] = 0;
+        }
+        for ($j = 0; $j < $this->jMax; ++$j) {
+            $this->matrix[$iPos][$j] = 0;
+        }
     }
 }
+/*
+$matrix1 = new MyMatrix(3, 3, 0);
+$matrix1 = $matrix1->str2Matrix("3,3,3\n3,0,3\n3,3,3");
+$matrix1->prettyMatrix('cli');
+$filled = $matrix1->fillZero();
+$filled->prettyMatrix('cli');
+*/
+?>
