@@ -22,8 +22,35 @@ class Bobby
      */
     public function giveMoney($price)
     {
-        /** @TODO */
-
+        $tmptab = $this->wallet;
+        $tmptot = 0;
+        while ($price > 0){
+            $max = 0;
+            $pos = 0;
+            $bool = false;
+            for($i = 0; $i < count($this->wallet); $i++){
+                if (is_numeric($this->wallet[$i]) and $max < $this->wallet[$i] and $this->wallet[$i] <= $price) 
+                {
+                    $max = $this->wallet[$i];
+                    $pos = $i;
+                    $bool = true;
+                }
+            }
+            if ($bool){
+                $price -= $max;
+                $tmptot += $max;
+                //for($i = 0; $i < count)
+                array_splice($this->wallet, $pos, 1);
+            }
+            else {
+                break;
+            }
+        }
+        if ($price <= 0){
+            $this->total -= $tmptot;
+            return true;
+        }
+        $this->wallet = $tmptab;
         return false;
     }
 
