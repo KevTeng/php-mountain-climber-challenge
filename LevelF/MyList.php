@@ -2,6 +2,8 @@
 
 namespace Hackathon\LevelF;
 
+include 'MyElement.php';
+
 class MyList
 {
     private $head = null;
@@ -113,7 +115,28 @@ class MyList
      */
     public function getFirstElementByValue($value)
     {
-        /** @TODO */
-        return $this;
+        for ($p = $this->getHead(); $p != null; $p = $p->getNext()) {
+            if ($p->getValue() == $value) {
+                return $p;
+            }
+        }
+        return null;
     }
 }
+/*
+$l = new MyList;
+$l->append(1);
+$l->append(2);
+$l->append(3);
+$l->append(4);
+$l->append(5);
+$l->printConsole();
+if (!$l->hasValue(7)) {
+    echo "NULL";
+} else {
+    echo "WORKS";
+}
+*/
+
+
+?>
